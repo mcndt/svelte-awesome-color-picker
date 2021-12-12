@@ -11,7 +11,7 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type { Color, Components, Rgb, Hsv } from '$lib/type/types';
+	import type { Color, Components, setColorProp } from '$lib/type/types';
 
 	export let components: Partial<Components> = {};
 
@@ -38,7 +38,8 @@
 		b: 0
 	};
 
-	export const setColor = ({ hex, rgb, hsv }: { hex: string; rgb: Rgb; hsv: Hsv }): void => {
+	export const setColor = ({ hex, rgb, hsv }: setColorProp): void => {
+		console.log('setColor debut', hex, rgb, hsv)
 		if (hex) {
 			color = _.rgb2hsv(_.hex2rgb(hex));
 		} else if (rgb) {
@@ -46,6 +47,7 @@
 		} else if (hsv) {
 			color = _.hsv2rgb(hsv);
 		}
+		console.log('setColor fin', color)
 	};
 
 	const default_components = {
@@ -79,7 +81,11 @@
 		}
 	}
 
-	$: color = _.hsv2rgb(color);
+	$: {
+		console.log('&d', color);
+		color = _.hsv2rgb(color);
+		console.log('$f', color)
+	}
 </script>
 
 <ArrowKeyHandler />
@@ -112,4 +118,5 @@
 			{toRight}
 		/>
 	{/if}
+	<slot name="x" {color} {setColor} />
 </svelte:component>

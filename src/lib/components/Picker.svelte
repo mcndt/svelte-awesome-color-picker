@@ -24,6 +24,7 @@
 	let pos = { x: 100, y: 0 };
 
 	$: if (typeof h === 'number') colorBg = _.hsv2rgb({ h, s: 1, v: 1, a: 1 });
+	$: console.log('picker', colorBg)
 
 	function onClick(e: { offsetX: number; offsetY: number }) {
 		let mouse = { x: e.offsetX, y: e.offsetY };

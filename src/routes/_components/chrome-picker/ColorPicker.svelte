@@ -6,6 +6,7 @@
 	import PickerIndicator from './PickerIndicator.svelte';
 	import PickerWrapper from './PickerWrapper.svelte';
 	import Wrapper from './Wrapper.svelte';
+	import HexInput from "./HexInput.svelte";
 </script>
 
 <ColorPicker
@@ -20,4 +21,8 @@
 		wrapper: Wrapper
 	}}
 	toRight
-/>
+>
+	<div slot="x" let:color let:setColor>
+		<HexInput {color} onBlur={color => setColor(color)}/>
+	</div>
+</ColorPicker>

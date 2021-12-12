@@ -25,6 +25,12 @@ export type Hex = {
 
 export type Color = Hsv & Rgb & Hex;
 
+export type setColorProp = {
+	hex?: string;
+	rgb?: Rgb;
+	hsv?: Hsv
+}
+
 export type Components = {
 	pickerIndicator: PickerIndicator;
 	sliderIndicator: SliderIndicator;
